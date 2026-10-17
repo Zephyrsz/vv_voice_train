@@ -1,0 +1,35 @@
+dataset:
+  sampling_length: 128
+  f0_process_mode: mora
+  phoneme_type: ojt
+  phoneme_mask_max_length: 0
+  phoneme_mask_num: 0
+  accent_mask_max_length: 0
+  accent_mask_num: 0
+  f0_mask_max_length: 0
+  f0_mask_num: 0
+  seed: 0
+network:
+  phoneme_embedding_size: 16
+  speaker_embedding_size: 16
+  encoder_type: gru
+  encoder_hidden_size: 128
+  encoder_kernel_size: 0
+  encoder_layer_num: 2
+  ar_encoder_type: uni_gru
+  ar_encoder_hidden_size: 128
+  ar_encoder_kernel_size: 0
+  ar_encoder_layer_num: 2
+model:
+  f0_loss_weight: 1.0
+train:
+  batch_size: 8
+  log_iteration: 100
+  snapshot_iteration: 1000
+  stop_iteration: 100000
+  optimizer: {name: adam, lr: 0.001}
+  num_processes: 0
+  use_gpu: true
+  use_amp: false
+project:
+  name: native-intonation

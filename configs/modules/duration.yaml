@@ -1,0 +1,22 @@
+dataset:
+  phoneme_num: 128
+  phoneme_type: ojt
+  test_trial_num: 1
+  seed: 0
+network:
+  phoneme_embedding_size: 16
+  speaker_embedding_size: 16
+  hidden_size_list: [128, 128, 128]
+  kernel_size_list: [5, 5, 5]
+model:
+  eliminate_pause: false
+train:
+  batch_size: 8
+  log_iteration: 100
+  snapshot_iteration: 1000
+  stop_iteration: 100000
+  optimizer: {name: adam, lr: 0.001}
+  num_processes: 0
+  use_gpu: true
+project:
+  name: native-duration

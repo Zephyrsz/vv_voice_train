@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "new-vv-train"
+version = "0.1.0"
+description = "Research training adapters for the author's VOICEVOX talk modules"
+requires-python = ">=3.11,<3.13"
+dependencies = ["numpy>=1.24,<2", "PyYAML>=6", "soundfile>=0.12", "scipy>=1.10"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+onnx = ["onnx>=1.14,<1.18", "onnxruntime>=1.17,<1.20"]
+features = ["torch==2.4.1", "librosa==0.10.2.post1", "pyworld==0.3.5", "pyopenjtalk==0.4.1", "setuptools<81"]
+training = ["torch==2.4.1", "torchvision==0.19.1", "torch-optimizer==0.3.0", "tensorboardX>=2.6,<3", "tensorboard>=2.17,<3", "wandb>=0.18,<1", "six>=1.16", "matplotlib>=3.7", "more-itertools>=10"]
+
+[project.scripts]
+new-vv-train = "new_vv_train.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

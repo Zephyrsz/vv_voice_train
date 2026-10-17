@@ -1,0 +1,11 @@
+--- a/yukarin_s/utility/trainer_extension.py
++++ b/yukarin_s/utility/trainer_extension.py
+@@ -50,7 +50,7 @@
+         self.output_dir = output_dir
+ 
+         self.initialized = False
+-        self.wandb_id = wandb.util.generate_id()
++        self.wandb_id = wandb.util.generate_id() if hasattr(wandb.util, "generate_id") else wandb.util.random_string()
+ 
+     def __call__(self, trainer: Trainer):
+         if not self.initialized:

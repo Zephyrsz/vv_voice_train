@@ -1,0 +1,48 @@
+--- a/hifi_gan/meldataset.py
++++ b/hifi_gan/meldataset.py
+@@ -76,7 +76,7 @@
+ 
+     global mel_basis, hann_window
+     if fmax not in mel_basis:
+-        mel = librosa_mel_fn(sampling_rate, n_fft, num_mels, fmin, fmax)
++        mel = librosa_mel_fn(sr=sampling_rate, n_fft=n_fft, n_mels=num_mels, fmin=fmin, fmax=fmax)
+         mel_basis[str(fmax) + "_" + str(y.device)] = (
+             torch.from_numpy(mel).float().to(y.device)
+         )
+@@ -99,6 +99,7 @@
+         pad_mode="reflect",
+         normalized=False,
+         onesided=True,
++        return_complex=False,
+     )
+ 
+     spec = torch.sqrt(spec.pow(2).sum(-1) + (1e-9))
+@@ -208,7 +209,7 @@
+             obj = np.load(f0_filename, allow_pickle=True).item()
+             f0, f0_rate = obj["array"], obj["rate"]
+             f0[f0 > 0] = np.exp(f0[f0 > 0])
+-            f0 = np.pad(f0, (0, f0_rate // 50), "edge")  # ちょっと伸ばす
++            f0 = np.pad(f0, (0, int(f0_rate // 50)), "edge")  # ちょっと伸ばす
+             f0 = torch.FloatTensor(f0)
+             f0 = f0.unsqueeze(0)
+         else:
+--- a/train.py
++++ b/train.py
+@@ -64,6 +64,9 @@
+     if cp_g is None or cp_do is None:
+         state_dict_do = None
+         last_epoch = -1
++        if a.pretrained_generator_path is not None:
++            initial = load_checkpoint(a.pretrained_generator_path, device)
++            generator.load_state_dict(initial["generator"] if "generator" in initial else initial)
+     else:
+         state_dict_g = load_checkpoint(cp_g, device)
+         state_dict_do = load_checkpoint(cp_do, device)
+@@ -359,6 +362,7 @@
+ 
+     parser = argparse.ArgumentParser()
+ 
++    parser.add_argument("--pretrained_generator_path", default=None)
+     parser.add_argument("--group_name", default=None)
+     parser.add_argument("--input_wavs_dir", default="LJSpeech-1.1/wavs")
+     parser.add_argument("--input_f0_dir")

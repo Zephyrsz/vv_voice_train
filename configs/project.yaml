@@ -1,0 +1,32 @@
+# All paths resolve from root, relative to this config file.
+root: ..
+feature_profile: configs/feature_profile.json
+paths:
+  corpus: corpora/new_voice_v1
+  derived: corpora/new_voice_v1/derived
+  vendor: vendor
+  run: runs/first_run
+  base: null
+alignment:
+  input: corpora/new_voice_v1/alignment_input
+  unit: seconds   # Or htk (100 ns ticks); import converts explicitly.
+frontend:
+  dictionary: ../vv_tts_ws_server/assets/dict/open_jtalk_dic_utf_8-1.11
+training:
+  mode: scratch
+  python: .venv/bin/python
+  modules: {}
+export:
+  python: .venv/bin/python
+  device: cpu
+  opset: 17
+  nsf_policy: allow-stochastic
+core:
+  version: 0.17.0
+  python: ../vv_tts_ws_server/.venv/bin/python
+  assets: ../vv_tts_ws_server/assets
+  existing_models: ../vv_tts_ws_server/assets/models
+validation:
+  text: 今日はいい天気ですね。
+package:
+  name: new_voice

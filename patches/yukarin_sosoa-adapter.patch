@@ -1,0 +1,26 @@
+--- a/yukarin_sosoa/dataset.py
++++ b/yukarin_sosoa/dataset.py
+@@ -344,11 +344,18 @@
+         }
+         assert set(fn_list).issubset(set(speaker_ids.keys()))
+ 
+-    numpy.random.RandomState(config.seed).shuffle(fn_list)
+-
+-    test_num = config.test_num
+-    trains = fn_list[test_num:]
+-    tests = fn_list[:test_num]
++    # Adapter-provided fixed splits; held-out final test is never in this view.
++    split_path = config.speaker_dict_path.parent / "splits.json" if config.speaker_dict_path is not None else None
++    if split_path is not None and split_path.exists():
++        splits = json.loads(split_path.read_text())
++        trains, tests = splits["train"], splits["valid"]
++        assert trains and tests and not set(trains).intersection(tests)
++        assert set(trains).union(tests) == set(fn_list)
++    else:
++        numpy.random.RandomState(config.seed).shuffle(fn_list)
++        test_num = config.test_num
++        trains = fn_list[test_num:]
++        tests = fn_list[:test_num]
+ 
+     def _dataset(fns, for_eval=False):
+         inputs = [

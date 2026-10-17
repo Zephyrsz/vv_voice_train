@@ -1,0 +1,11 @@
+--- a/yukarin_sosoa/utility/train_utility.py
++++ b/yukarin_sosoa/utility/train_utility.py
+@@ -42,7 +42,7 @@
+         from torch.utils.tensorboard import SummaryWriter
+ 
+         if self.wandb_id is None:
+-            self.wandb_id = wandb.util.generate_id()
++            self.wandb_id = wandb.util.generate_id() if hasattr(wandb.util, "generate_id") else wandb.util.random_string()
+ 
+         self.wandb = wandb.init(
+             id=self.wandb_id,

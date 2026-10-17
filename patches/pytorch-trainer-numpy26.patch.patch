@@ -1,0 +1,20 @@
+--- a/pytorch_trainer/_environment_check.py
++++ b/pytorch_trainer/_environment_check.py
+@@ -3,7 +3,6 @@
+ import sys
+ import warnings
+ 
+-import numpy.distutils.system_info
+ 
+ 
+ def _check_python_350():
+@@ -36,7 +35,8 @@
+     if sys.platform != 'darwin':
+         return
+ 
+-    blas_opt_info = numpy.distutils.system_info.get_info('blas_opt')
++    # NumPy 1.26 removed the distutils compatibility path on Python 3.11.
++    blas_opt_info = {}
+     if blas_opt_info:
+         extra_link_args = blas_opt_info.get('extra_link_args')
+         if extra_link_args and '-Wl,Accelerate' in extra_link_args:

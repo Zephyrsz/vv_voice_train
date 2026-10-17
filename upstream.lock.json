@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "vv_core_inference": {
+      "repository": "https://github.com/Hiroshiba/vv_core_inference",
+      "revision": "df60099ccd58a54352bf0239b60cb29794385473",
+      "patches": []
+    },
+    "yukarin_s": {
+      "repository": "https://github.com/Hiroshiba/yukarin_s",
+      "revision": "50556896d74acd6252b84dc16e58af8cb15cc7d0",
+      "patches": [
+        {
+          "path": "patches/yukarin_s-adapter.patch",
+          "sha256": "b573124c6e47ec36d7373c767845ebd31faac8b061689a66ac6ac917333c9141"
+        },
+        {
+          "path": "patches/yukarin_s-torch24.patch",
+          "sha256": "121c0cc05f55177f26d958b787ab6b0ac717bfeb5cfa9709da814e77cd0df45f"
+        },
+        {
+          "path": "patches/yukarin_s-wandb.patch.patch",
+          "sha256": "cd03aaf5cd80d81f053c431458c441b15e978a8912b760f0918c841fa9664d21"
+        }
+      ]
+    },
+    "yukarin_sa": {
+      "repository": "https://github.com/Hiroshiba/yukarin_sa",
+      "revision": "2ad1065f94d61e53006e7311086294a8b1407b6f",
+      "patches": [
+        {
+          "path": "patches/yukarin_sa-adapter.patch",
+          "sha256": "0afac679ec0a1a1325b609b86c60d6a6d7b0831b8694fc1d1e770a80f807b172"
+        },
+        {
+          "path": "patches/yukarin_sa-torch24.patch",
+          "sha256": "10398ae742d381eb62830875e41c11bfcfe49a078c9c6c1349d3a04192387d10"
+        },
+        {
+          "path": "patches/yukarin_sa-wandb.patch.patch",
+          "sha256": "0ff65f1b87a7dd5cf637c76a54a8df75c8b6ee32fcf28cd390f577156aa1b9ce"
+        }
+      ]
+    },
+    "yukarin_sosoa": {
+      "repository": "https://github.com/Hiroshiba/yukarin_sosoa",
+      "revision": "22aa731d56bb5f1c9fe4bfab12b661035cb4a0e2",
+      "patches": [
+        {
+          "path": "patches/yukarin_sosoa-adapter.patch",
+          "sha256": "bb16f397e3353ce3886a03ff2f3d91cb455ae2701e945399e32af68694862f18"
+        },
+        {
+          "path": "patches/yukarin_sosoa-torch24.patch",
+          "sha256": "24ed392451552c0202c376e477b33f9626877759b8d6dedda66948855d9ae1ec"
+        },
+        {
+          "path": "patches/yukarin_sosoa-wandb.patch.patch",
+          "sha256": "4305b947064f080e6e028097dd724f396b2f42c16ec5f1d2c37a71511b7d7899"
+        }
+      ]
+    },
+    "hifi-gan": {
+      "repository": "https://github.com/Hiroshiba/hifi-gan",
+      "revision": "265da0f0f71923336615d6657f195ffdc6df25e4",
+      "patches": [
+        {
+          "path": "patches/hifi-gan-api.patch",
+          "sha256": "c8f83c7d8475d777f623616b48f388310b601705b0480872e4c0f7e9dc76f8a2"
+        }
+      ]
+    },
+    "old_yukarin_sosoa": {
+      "repository": "https://github.com/Hiroshiba/old_yukarin_sosoa",
+      "revision": "38dcd81805549658d2a8a6e871cbc75513154c7a",
+      "patches": []
+    },
+    "pyopenjtalk": {
+      "repository": "https://github.com/VOICEVOX/pyopenjtalk",
+      "revision": "74703b034dd90a1f199f49bb70bf3b66b1728a86",
+      "patches": []
+    },
+    "espnet_pytorch_library": {
+      "repository": "https://github.com/Hiroshiba/espnet_pytorch_library",
+      "revision": "fe0183b78b3495324e6769e340c3bd80f91e7f8e",
+      "patches": []
+    },
+    "pytorch-trainer": {
+      "repository": "https://github.com/Hiroshiba/pytorch-trainer",
+      "revision": "b4b3d648868e4cec33c69e18fc3877c103a8d438",
+      "patches": [
+        {
+          "path": "patches/pytorch-trainer-numpy26.patch.patch",
+          "sha256": "1034c09ee04b57fa1b296bef7218b8303d1d1bfde7048d5bc74dc31557a74339"
+        }
+      ]
+    }
+  }
+}

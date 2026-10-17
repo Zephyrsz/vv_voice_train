@@ -1,0 +1,22 @@
+--- a/train.py
++++ b/train.py
+@@ -165,7 +165,7 @@
+         if epoch % config.train.log_epoch == 0:
+             model.eval()
+ 
+-            with torch.inference_mode():
++            with torch.no_grad():
+                 test_results: list[ModelOutput] = []
+                 for batch in test_loader:
+                     batch = to_device(batch, device, non_blocking=True)
+--- a/yukarin_sosoa/generator.py
++++ b/yukarin_sosoa/generator.py
+@@ -52,7 +52,7 @@
+         if speaker_id is not None:
+             speaker_id = to_tensor(speaker_id).to(self.device)
+ 
+-        with torch.inference_mode():
++        with torch.no_grad():
+             _, output_list = self.predictor(
+                 f0_list=f0_list, phoneme_list=phoneme_list, speaker_id=speaker_id
+             )
